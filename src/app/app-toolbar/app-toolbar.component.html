@@ -1,0 +1,26 @@
+<!-- UI for Login Toolbar start -->
+<div>
+    <mat-toolbar color="accent">
+  
+      <span>{{title}}</span> &nbsp;
+      <span class="toolbar-width">
+          {{currentUser}}
+      </span>
+    
+      <div *ngIf="currentUser">
+          <button mat-button color="primary" 
+          (click)="logout()"
+          routerLink="/login">Logout</button>
+      </div>
+      
+      <div *ngIf="!currentUser">
+          <button mat-button color="primary" (click)="onLogin()">Login</button>
+      </div>
+  
+      <div *ngIf="loading">
+        <mat-spinner diameter="20"></mat-spinner>
+      </div>
+  
+    </mat-toolbar>
+  </div>
+  <!-- UI for Login Toolbar end -->

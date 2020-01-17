@@ -1,0 +1,41 @@
+
+<!-- UI for showing add category button start -->
+<div align="end">
+ <button mat-stroked-button 
+    color="primary" 
+    class="btn-style"
+    routerLink="/category_detail">Add Category</button>
+</div>
+<!-- UI for showing add category button end -->
+
+<div>
+    <mat-grid-list cols="3" rowHeight="1:1" class="list-grid-style">
+        <mat-grid-tile *ngFor="let cateogry of categories; let i = index"> <!-- set the loop here-->
+            <!-- Data to be shown -->
+            <mat-card class="mat-card">
+                <img mat-card-image src="{{cateogry.categoryImage}}" alt="Photo of a Shiba Inu">
+                <mat-card-content>
+                    <div>
+                    <p>
+                        {{cateogry.categoryName}}
+                    </p>
+                        <mat-slide-toggle
+                            class="example-margin"
+                            [color]="primary"
+                            [checked]="cateogry.categoryStatus"
+                            (change)="changeStatus(i, cateogry.categoryStatus)">
+                        </mat-slide-toggle>
+                    </div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                    <button mat-raised-button color="warn">View</button>
+                    <button mat-raised-button color="warn">Edit</button>
+                    <button mat-raised-button color="warn">Add Product</button>
+                </mat-card-actions>
+            </mat-card>
+
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
+<!-- UI for showing category list end -->
+
