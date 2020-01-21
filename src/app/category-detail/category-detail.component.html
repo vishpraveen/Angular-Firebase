@@ -1,3 +1,17 @@
 <app-app-toolbar [title]="title"></app-app-toolbar>
 
 <p>category-detail works!</p>
+
+<mat-card class="mat-card">
+    <form #categoryForm="ngForm">
+        <!-- {{categoryForm |json}} -->
+        {{category |json}}
+        <div class="container">
+            <mat-form-field appearance="outline" class="mat-field">
+                <mat-label>Category Name</mat-label>
+                <input matInput placeholder="Ex. Catogory" name="categoryName" [(ngModel)]="category.categoryName" required>
+                <mat-hint>Name of the Category</mat-hint>
+            </mat-form-field>
+        </div>
+    </form>
+</mat-card>

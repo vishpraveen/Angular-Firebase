@@ -30,6 +30,9 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
 import { AppToolbarComponent } from './app-toolbar/app-toolbar.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms' //import for form controls
 
 @NgModule({
   declarations: [
@@ -57,6 +60,9 @@ import { AppToolbarComponent } from './app-toolbar/app-toolbar.component';
     MatCardModule,
     MatGridListModule,
     MatSlideToggleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
   ],
   providers: [
     AngularFireAuthGuard, //Use fire/auth-guard for routing if the user is authincated.

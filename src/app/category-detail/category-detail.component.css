@@ -1,0 +1,17 @@
+.mat-card{
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+    align-self: center;
+}
+
+.container{
+    padding: 10px;
+}
+
+.mat-field{
+    width: 100%;
+}
