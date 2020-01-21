@@ -1,11 +1,11 @@
 <app-app-toolbar [title]="title"></app-app-toolbar>
 
-<p>category-detail works!</p>
+<!-- <p>category-detail works!</p> -->
 
 <mat-card class="mat-card">
-    <form #categoryForm="ngForm" (ngSubmit)="addCatogory()">
+    <form #categoryForm="ngForm" (ngSubmit)="addCatogory(categoryForm)">
         <!-- {{categoryForm |json}} -->
-        {{category |json}}
+        <!-- {{category |json}}
         {{imageFile |json}}
         <div *ngIf="uploadPercent">
             {{uploadPercent | async}}
@@ -13,7 +13,7 @@
         
         <div *ngIf="downloadURL">
             {{downloadURL | async}}
-        </div>
+        </div> -->
         
        
 
@@ -33,9 +33,9 @@
 
             <input type="file" (change)="getCategoryFile($event)" class="input-file">
 
-            <div class="container-img">
-                <mat-progress-bar mode="determinate" [value]="40"></mat-progress-bar>
-            </div>
+            <!-- <div class="container-img">
+                <mat-progress-bar mode="determinate" [value]="uploadPercent | asyn}"></mat-progress-bar>
+            </div> -->
 
 
             <!-- <mat-form-field appearance="outline" class="mat-field">

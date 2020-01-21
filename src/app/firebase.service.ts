@@ -8,6 +8,7 @@ import { UserModel, UserProvider } from './user_model';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { SharedPref } from './shared-pref'
+import { CategoryModel } from './category-model';
 
 @Injectable({
   providedIn: 'root'
@@ -67,19 +68,11 @@ export class FirebaseService {
   // category services
 
   // category detail services
-  uploadFile(event) {
-    const file = event.target.files[0];
-    const filePath = 'name-your-file-path-here';
-    const fileRef = this.storage.ref(filePath);
-    const task = fileRef.putString(file);
-
-     // observe percentage changes
-    //  this.uploadPercent = task.percentageChanges();
-     // get notified when the download URL is available
-    //  task.snapshotChanges().pipe(
-    //      finalize(() => this.downloadURL = fileRef.getDownloadURL() )
-    //   )
-    //  .subscribe()
+  saveCategory(cateogry: CategoryModel): void {
+    this.db.database.ref(this.sharedPref.TBL_CATEGORIES+'/').push({
+      categoryName: cateogry.categoryName,
+      categoryImage: cateogry.categoryImage,
+      categoryStatus: cateogry.categoryStatus
+    });
   }
-  
 }

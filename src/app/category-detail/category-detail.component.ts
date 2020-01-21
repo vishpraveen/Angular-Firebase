@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { FirebaseService } from '../firebase.service';
 import { SharedPref } from '../shared-pref';
-import { FormControl } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-category-detail',
@@ -36,7 +36,7 @@ export class CategoryDetailComponent implements OnInit {
   getCategoryFile(event) {
     const file = event.target.files[0];
     this.imageFile = file;
-    
+    this.getServerFilePath();
   }
 
   getServerFilePath(){
@@ -46,28 +46,23 @@ export class CategoryDetailComponent implements OnInit {
     if(this.imageFile != null){
       const task = ref.put(this.imageFile);
 
+       // observe percentage changes
+      this.uploadPercent = task.percentageChanges();
+
       task.snapshotChanges().pipe(
-        finalize(() => this.downloadURL = ref.getDownloadURL())
+        finalize(() => ref.getDownloadURL().subscribe(url => this.category.categoryImage = url))
       ).subscribe()
       
-      this.setImageUrl();
     }else{
       this.category.categoryImage = this.defaultImageUrl
     }
    
   }
 
-  setImageUrl(){
-    this.downloadURL.subscribe(url => {
-      if(url.length){
-        this.category.categoryImage = url
-        this.utility.showDevLog(`Category Image set: ${this.category.categoryImage}`);
-      }
-    })
-  }
-
-  addCatogory(){
-    this.utility.showDevLog(JSON.stringify(this.categoryForm))
+  addCatogory(categoryForm: NgForm){
+    this.category.categoryName = categoryForm.value.categoryName;
+    this.utility.showDevLog(JSON.stringify(this.category));
+    this.firebaseService.saveCategory(this.category);
   }
 
 }
