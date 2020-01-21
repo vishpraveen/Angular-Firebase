@@ -12,6 +12,20 @@
     padding: 10px;
 }
 
+.container-img{
+    padding: 10px;
+    text-align: left;
+}
+
 .mat-field{
     width: 100%;
+}
+
+.img-style{
+    width: 100%;
+    height: 250px;
+}
+
+.input-file{
+    width: 100%;    
 }

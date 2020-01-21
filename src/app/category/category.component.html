@@ -15,12 +15,12 @@
             <mat-card class="mat-card">
                 <img mat-card-image src="{{cateogry.categoryImage}}" alt="Photo of a Shiba Inu">
                 <mat-card-content>
-                    <div>
-                    <p>
+                    <div class="category-container">
+                    <p class="p-style">
                         {{cateogry.categoryName}}
                     </p>
                         <mat-slide-toggle
-                            class="example-margin"
+                            class="toggle-style"
                             [color]="primary"
                             [checked]="cateogry.categoryStatus"
                             (change)="changeStatus(i, cateogry.categoryStatus)">

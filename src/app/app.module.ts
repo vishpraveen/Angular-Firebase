@@ -32,6 +32,8 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
 import { AppToolbarComponent } from './app-toolbar/app-toolbar.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 import { FormsModule } from '@angular/forms' //import for form controls
 
 @NgModule({
@@ -62,6 +64,7 @@ import { FormsModule } from '@angular/forms' //import for form controls
     MatSlideToggleModule,
     MatFormFieldModule,
     MatInputModule,
+    MatProgressBarModule,
     FormsModule,
   ],
   providers: [

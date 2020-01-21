@@ -3,15 +3,53 @@
 <p>category-detail works!</p>
 
 <mat-card class="mat-card">
-    <form #categoryForm="ngForm">
+    <form #categoryForm="ngForm" (ngSubmit)="addCatogory()">
         <!-- {{categoryForm |json}} -->
         {{category |json}}
+        {{imageFile |json}}
+        <div *ngIf="uploadPercent">
+            {{uploadPercent | async}}
+        </div>
+        
+        <div *ngIf="downloadURL">
+            {{downloadURL | async}}
+        </div>
+        
+       
+
+        <div class="container">
+            <img src="{{category.categoryImage}}" class="img-style">
+        </div>
+
         <div class="container">
             <mat-form-field appearance="outline" class="mat-field">
                 <mat-label>Category Name</mat-label>
-                <input matInput placeholder="Ex. Catogory" name="categoryName" [(ngModel)]="category.categoryName" required>
+                <input matInput type="text" placeholder="Ex. Catogory" name="categoryName" [(ngModel)]="category.categoryName" required>
                 <mat-hint>Name of the Category</mat-hint>
             </mat-form-field>
         </div>
+
+        <div class="container-img">
+
+            <input type="file" (change)="getCategoryFile($event)" class="input-file">
+
+            <div class="container-img">
+                <mat-progress-bar mode="determinate" [value]="40"></mat-progress-bar>
+            </div>
+
+
+            <!-- <mat-form-field appearance="outline" class="mat-field">
+                <mat-label>Category Image</mat-label>
+                <input type="file" 
+                    placeholder="Ex. Image URL" 
+                    name="categoryImage" 
+                    [(ngModel)]="category.categoryImage" 
+                    [value]="category.categoryImage"
+                    required>
+                <mat-hint>Image of the Category</mat-hint>
+            </mat-form-field> -->
+        </div>
+
+        <button mat-raised-button color="warn" type="submit">Add</button>
     </form>
 </mat-card>

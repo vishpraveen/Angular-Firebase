@@ -33,14 +33,27 @@
 }
 
 .example-section {
-  display: flex;
-  align-content: flex-end;
-  align-items: flex-end;
-  height: 60px;
+  width: 50%;
+  text-align: end;
+  height: 40px;
 }
 
-.example-margin {
+.toggle-style {
   margin: 5px;
-  width: 20px;
+  width: 20%;
   height: 30px;
+}
+
+.category-container{
+  display: flex;
+  text-align: justify;
+}
+
+.p-style{
+  width: 80%;
+  font-size: 16;
+}
+
+.btn-style{
+  width: min-content;
 }

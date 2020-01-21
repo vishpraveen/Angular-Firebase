@@ -5,13 +5,18 @@ import { AngularFireAuth } from '@angular/fire/auth'
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable, of } from 'rxjs';
 import { UserModel, UserProvider } from './user_model';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
+import { SharedPref } from './shared-pref'
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
 
-  constructor(private db: AngularFireDatabase, public afAuth: AngularFireAuth){
+  sharedPref = new SharedPref();
+
+  constructor(private db: AngularFireDatabase, public afAuth: AngularFireAuth, public storage: AngularFireStorage){
   }
 
   async getDbRef(childUrl: string) {
@@ -27,7 +32,7 @@ export class FirebaseService {
   }
   
   saveUser(user: UserModel): void {
-    this.db.database.ref('users/'+user.uid).set({
+    this.db.database.ref(this.sharedPref.TBL_USERS+'/' + user.uid).set({
       displayName: user.displayName,
       email: user.email,
       phoneNumber: user.phoneNumber,
@@ -45,7 +50,7 @@ export class FirebaseService {
   }
 
   getUsers(): Observable<any[]>{
-    return this.db.list('users').valueChanges();
+    return this.db.list(this.sharedPref.TBL_USERS).valueChanges();
   }
 
   getUserFromLocalStorage(): Observable<string>{
@@ -61,5 +66,20 @@ export class FirebaseService {
 
   // category services
 
+  // category detail services
+  uploadFile(event) {
+    const file = event.target.files[0];
+    const filePath = 'name-your-file-path-here';
+    const fileRef = this.storage.ref(filePath);
+    const task = fileRef.putString(file);
+
+     // observe percentage changes
+    //  this.uploadPercent = task.percentageChanges();
+     // get notified when the download URL is available
+    //  task.snapshotChanges().pipe(
+    //      finalize(() => this.downloadURL = fileRef.getDownloadURL() )
+    //   )
+    //  .subscribe()
+  }
   
 }
